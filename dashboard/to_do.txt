@@ -1,0 +1,7 @@
+ekstraksi:
+- buat form: url, keyword
+- pake api untuk extract artikel
+- pake api atau algoritma pecah kalimat
+- ekstraksi informasi pake algo atau api
+- filtering pake keyword
+- tampilkan
