@@ -60,9 +60,36 @@ class DashboardController extends Controller {
 	{
 		//$textapi = new \AYLIEN\TextAPI("7d5b07df", "56dac2bd67cd98ff94182ddbbb1884ba");
 		//$sentiment = \Aylien::Extract(['url' => 'http://www.theguardian.com/world/2014/jan/09/turkey-instability-threatens-economic-success-erdogan'		]);
-		$req = new AlchemyAPI();
-		$demo_url = 'http://www.theguardian.com/world/2014/jan/09/turkey-instability-threatens-economic-success-erdogan';
-		$demo = $req->text('url', $demo_url, null);
-		dd($demo);
+		//$req = new AlchemyAPI();
+		//$demo_url = 'http://www.theguardian.com/world/2014/jan/09/turkey-instability-threatens-economic-success-erdogan';
+		//$demo = $req->text('url', $demo_url, null);
+
+		
+		// Get cURL resource
+		$curl = curl_init();
+		// Set some options - we are passing in a useragent too here
+		curl_setopt_array($curl, array(
+			CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => 'http://localhost:88/alchemy/layanan.php',
+		));
+		// Send the request & save response to $resp
+		$resp = curl_exec($curl);
+		// Close request to clear up some resources
+		curl_close($curl);
+
+		//dd($resp);
+
+		//echo json_encode($resp);
+		$manage = (array) json_decode($resp);
+
+		//echo $resp;
+		//echo "<br><br>";
+
+		//print_r($manage);
+		//echo "<br><br>";
+		$json = json_encode($manage);
+		//return $json;
+
+		return view('daspestle/testing')->with('hasil', $manage);
 	}
 }

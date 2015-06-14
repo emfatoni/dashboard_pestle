@@ -14,7 +14,7 @@
 		</div>
 		<div class="form-group">
 			<label class="control-label">Content</label>
-			<textarea class="form-control" rows="10"></textarea>
+			<textarea class="form-control" rows="10">{{$hasil['text']}}</textarea>
 		</div>
 	</form>
 	<br>
