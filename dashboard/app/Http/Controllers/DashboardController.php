@@ -68,9 +68,14 @@ class DashboardController extends Controller {
 		// Get cURL resource
 		$curl = curl_init();
 		// Set some options - we are passing in a useragent too here
+		$flavor = 'url';
+		$opt = null;
+		$data = 'http://www.theguardian.com/world/2014/jan/09/turkey-instability-threatens-economic-success-erdogan';
+		$type="keyword";
+
 		curl_setopt_array($curl, array(
 			CURLOPT_RETURNTRANSFER => 1,
-		    CURLOPT_URL => 'http://localhost:88/alchemy/layanan.php',
+		    CURLOPT_URL => 'http://localhost:88/dashboard_pestle/alchemyapi/services.php?flavor='.$flavor.'&opt='.$opt.'&type='.$type.'&data='.$data,
 		));
 		// Send the request & save response to $resp
 		$resp = curl_exec($curl);
@@ -91,5 +96,31 @@ class DashboardController extends Controller {
 		//return $json;
 
 		return view('daspestle/testing')->with('hasil', $manage);
+	}
+	public function cek2()
+	{
+		$resource = 'http://www.theguardian.com/world/2014/jan/09/turkey-instability-threatens-economic-success-erdogan';
+		$type = 'relation';
+
+		$url = 'http://localhost:88/dashboard_pestle/alchemyapi/services.php';
+		$data = array(
+			'flavor' => 'url',
+			'data' => $resource,
+			'type' => $type,
+			);
+
+		$options = array(
+			'http' => array(
+				'header' => "Content-type: application/x-www-form-urlencoded",
+				'method' => 'POST',
+				'content' => http_build_query($data),
+				),
+			);
+		$context = stream_context_create($options);
+		$res = file_get_contents($url, false, $context);
+
+		echo "<pre><code>";
+		print_r($res);
+		echo "</code></pre>";
 	}
 }

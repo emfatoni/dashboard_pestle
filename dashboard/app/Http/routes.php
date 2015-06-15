@@ -23,6 +23,7 @@ Route::get('environment', 'DashboardController@environment');
 Route::get('keyword', 'DashboardController@keyword');
 Route::get('test', 'DashboardController@test');
 Route::get('cek', 'DashboardController@cek');
+Route::get('cek2', 'DashboardController@cek2');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
