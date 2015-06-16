@@ -1,6 +1,41 @@
 .db-box{
-	font-size: 16pt;
-	font-weight: lighter;
 	padding: 15px !important;
 	min-height: 200px !important;
+}
+.db-box p{
+	font-size: 16pt;
+	font-weight: lighter;
+}
+.condition-box{
+	padding: 15px !important;
+	min-height: 200px !important;
+}
+.condition-box a{
+	color: white !important;
+}
+.condition-box a:hover{
+	color: blue !important;
+}
+.condition-text{
+	font-size: 16px !important;
+}
+.borderless td, .borderless th{
+	border: none !important;
+}
+.condition-container{
+	margin-top: 20px;
+}
+.condition-wrapper{
+	position: relative;
+	overflow: auto;
+	padding: 0px;
+}
+.condition-wrapper li{
+	list-style: none;
+}
+.condition-wrapper ul li{
+	float: left;
+}
+.condition-wrapper ul{
+	padding: 0px;
 }

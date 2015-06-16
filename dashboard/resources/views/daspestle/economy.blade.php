@@ -10,46 +10,85 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-6">
-				<div class="col-md-12">
-					<h3>News and Articles</h3>
+			<div class="col-md-4 condition-container">
+				<div class="col-md-12 fd-box-turquoise fd-txt-white condition-box">
+					<p class="lead" style="margin-bottom: 5px">Nama Website <a href="#" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
 
-					<div class="well col-md-12">
-						<p class="lead">WorldBank.org</p>
-						<p>Monday, 25-5-2015</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-						<p class="lead" style="margin: 5px 0px">
-							<a href="#" title="sentiment"><i class="glyphicon glyphicon-minus-sign"></i></a>
-							<a href="#" title="go to website"><i class="glyphicon glyphicon-globe"></i></a>
-						</p>
-					</div>
-					<div class="well col-md-12">
-						<p class="lead">NationNews.org</p>
-						<p>Monday, 25-5-2015</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-						<p class="lead" style="margin: 5px 0px">
-							<a href="#" title="sentiment"><i class="glyphicon glyphicon-plus-sign"></i></a>
-							<a href="#" title="go to website"><i class="glyphicon glyphicon-globe"></i></a>
-						</p>
-					</div>
-					<div class="well col-md-12">
-						<p class="lead">TheHuffingtonPost.org</p>
-						<p>Monday, 25-5-2015</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-						<p class="lead" style="margin: 5px 0px">
-							<a href="#" title="sentiment"><i class="glyphicon glyphicon-minus-sign"></i></a>
-							<a href="#" title="go to website"><i class="glyphicon glyphicon-globe"></i></a>
-						</p>
-					</div>
+					<span>2015-06-16</span>
+
+					<table class="table borderless condition-text" style="margin-top: 25px">
+						<tr>
+							<td><i class="glyphicon glyphicon-plus-sign"></i></td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.</td>
+						</tr>
+						<tr>
+							<td><i class="glyphicon glyphicon-minus-sign"></i></td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.</td>
+						</tr>
+					</table>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-4 condition-container">
+				<div class="col-md-12 fd-box-turquoise fd-txt-white condition-box">
+					<p class="lead" style="margin-bottom: 5px">Nama Website <a href="#" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
+
+					<span>2015-06-16</span>
+
+					<table class="table borderless condition-text" style="margin-top: 25px">
+						<tr>
+							<td><i class="glyphicon glyphicon-plus-sign"></i></td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.</td>
+						</tr>
+						<tr>
+							<td><i class="glyphicon glyphicon-minus-sign"></i></td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-4 condition-container">
+				<div class="col-md-12 fd-box-turquoise fd-txt-white condition-box">
+					<p class="lead" style="margin-bottom: 5px">Nama Website <a href="#" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
+
+					<span>2015-06-16</span>
+
+					<table class="table borderless condition-text" style="margin-top: 25px">
+						<tr>
+							<td><i class="glyphicon glyphicon-plus-sign"></i></td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.</td>
+						</tr>
+						<tr>
+							<td><i class="glyphicon glyphicon-minus-sign"></i></td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-4 condition-container">
+				<div class="col-md-12 fd-box-turquoise fd-txt-white condition-box">
+					<p class="lead" style="margin-bottom: 5px">Nama Website <a href="#" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
+
+					<span>2015-06-16</span>
+
+					<table class="table borderless condition-text" style="margin-top: 25px">
+						<tr>
+							<td><i class="glyphicon glyphicon-plus-sign"></i></td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.</td>
+						</tr>
+						<tr>
+							<td><i class="glyphicon glyphicon-minus-sign"></i></td>
+							<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.</td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 @endsection

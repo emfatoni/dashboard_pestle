@@ -10,6 +10,7 @@
 	<script src="js/jquery-2.1.3.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/myscript.js"></script>
+	<script src="js/unislider.js"></script>
 </head>
 
 <body>
