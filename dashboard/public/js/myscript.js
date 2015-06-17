@@ -11,7 +11,13 @@ app.config(function($routeProvider, $locationProvider){
 	});
 	$routeProvider.when('/keyword', {
 		templateUrl: 'pages/keyword.html',
-		controller: 'KaywordController'
+		controller: 'KeywordController'
+	});
+	$routeProvider.when('/environment', {
+		templateUrl: 'pages/environment.html',
+	});
+	$routeProvider.when('/economy', {
+		templateUrl: 'pages/economy.html',
 	});
 });
 
@@ -24,11 +30,11 @@ app.factory("MetricSvc", function($http){
 		},
 		create: function(data)
 		{
-			return $http.get('metric/create', data);
+			return $http({method: 'GET', url:'metric/create', params:data});
 		},
 		get: function(id)
 		{
-			return $http.get('metric/'+id);
+			return $http({method: 'GET', url:'metric/'+id});
 		},
 		update: function(id, data)
 		{
@@ -93,7 +99,7 @@ app.factory("ConditionSvc", function($http){
 app.controller('MainController', function($scope, $location){
 	//
 });
-app.controller('KaywordController', function($scope, $location, MetricSvc, SiteSvc){
+app.controller('KeywordController', function($scope, $location, MetricSvc, SiteSvc){
 
 	// get all data
 	$scope.get_metrics = function(){
@@ -113,7 +119,31 @@ app.controller('KaywordController', function($scope, $location, MetricSvc, SiteS
 	$scope.get_metrics();
 	$scope.temp_metric = {
 		"name": "",
-		"keywords": ""
+		"keywords": "",
+		"id": ""
 	};
+	$scope.is_loading = false;
+
+	// fungsi-fungsi
+	$scope.metric_add = function(){
+		$scope.is_loading = true;
+		var req = MetricSvc.update($scope.temp_metric.id, $scope.temp_metric);
+		req.success(function(res){
+			alert(res.status);
+			$scope.get_metrics();
+			$scope.is_loading = false;
+		});
+	}
+	$scope.clear_keywords = function(){
+		$scope.temp_metric.keywords = "";
+	}
+	$scope.get_metric = function(name){
+		$scope.is_loading = true;
+		var req = MetricSvc.get(name);
+		req.success(function(res){
+			$scope.temp_metric = res;
+			$scope.is_loading = false;
+		});
+	}
 
 });

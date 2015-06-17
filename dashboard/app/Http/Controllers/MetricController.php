@@ -56,7 +56,9 @@ class MetricController extends Controller {
 	 */
 	public function show($id)
 	{
-		return Metric::find($id);
+		$metric = Metric::where('name', '=', $id)->take(1)->get();
+		$temp = $metric->toArray();
+		return $temp[0];
 	}
 
 	/**

@@ -3,61 +3,74 @@
 			<div class="col-md-12">
 				<div class="col-md-12">
 					<h1 class="text-center">KEYWORD SETTINGS</h1>
+					<p class="text-center"><span class="lead" ng-show="is_loading">Loading. . .</span></p>
 				</div>
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row" style="margin-top: 30px">
 			<div class="col-md-4">
 				<div class="col-md-12">
 					<form>
-						<div class="form-group">
+						<div ng-show="false" class="form-group">
 							<label>PESTLE Analysis Factors:</label>
 							<div class="radio">
 								<label>
-									<input type="radio" name="aspek" value="politic">
+									<input type="radio" name="aspek" value="politic" ng-model="temp_metric.name">
 									Politic
 								</label>
 							</div>
 							<div class="radio">
 								<label>
-									<input type="radio" name="aspek" value="economy">
+									<input type="radio" name="aspek" value="economy" ng-model="temp_metric.name">
 									Economy
 								</label>
 							</div>
 							<div class="radio">
 								<label>
-									<input type="radio" name="aspek" value="social">
+									<input type="radio" name="aspek" value="social" ng-model="temp_metric.name">
 									Social
 								</label>
 							</div>
 							<div class="radio">
 								<label>
-									<input type="radio" name="aspek" value="technology">
+									<input type="radio" name="aspek" value="technology" ng-model="temp_metric.name">
 									Technology
 								</label>
 							</div>
 							<div class="radio">
 								<label>
-									<input type="radio" name="aspek" value="legal">
+									<input type="radio" name="aspek" value="legal" ng-model="temp_metric.name">
 									Legal
 								</label>
 							</div>
 							<div class="radio">
 								<label>
-									<input type="radio" name="aspek" value="environment">
+									<input type="radio" name="aspek" value="environment" ng-model="temp_metric.name">
 									Environment
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="aspek" value="area" ng-model="temp_metric.name">
+									Area (country/city)
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="aspek" value="sector" ng-model="temp_metric.name">
+									Industry Sector
 								</label>
 							</div>
 						</div>
 						<div class="form-group">
 							<label>Keyword:</label>
-							<textarea class="form-control" rows="4"></textarea>
+							<textarea class="form-control" rows="4" ng-model="temp_metric.keywords"></textarea>
 							<span>separated with comma (,)</span>
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary">Add</button>
-							<button class="btn btn-warning">Clear</button>
+							<input type="submit" class="btn btn-primary" value="Add" ng-click="metric_add()">
+							<button class="btn btn-warning" ng-click="clear_keywords()">Clear</button>
 						</div>
 					</form>
 				</div>
@@ -67,80 +80,15 @@
 					<table class="table table-condensed table-bordered">
 						<thead>
 							<tr>
-								<th class="text-center">No.</th>
 								<th class="text-center">Factors</th>
 								<th class="text-center">Keywords</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Politic</td>
+							<tr ng-repeat="metric in metrics">
+								<td ng-click="get_metric(metric.name)"><a href="">{{metric.name}}</a></td>
 								<td>
-									<ul>
-										<li>government stability</li>
-										<li>corruption level</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>Politic</td>
-								<td>
-									<ul>
-										<li>government stability</li>
-										<li>corruption level</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Economy</td>
-								<td>
-									<ul>
-										<li>government stability</li>
-										<li>corruption level</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Social</td>
-								<td>
-									<ul>
-										<li>government stability</li>
-										<li>corruption level</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>Technology</td>
-								<td>
-									<ul>
-										<li>government stability</li>
-										<li>corruption level</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>Legal</td>
-								<td>
-									<ul>
-										<li>government stability</li>
-										<li>corruption level</li>
-									</ul>
-								</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>Environment</td>
-								<td>
-									<ul>
-										<li>government stability</li>
-										<li>corruption level</li>
-									</ul>
+									{{metric.keywords}}
 								</td>
 							</tr>
 						</tbody>
