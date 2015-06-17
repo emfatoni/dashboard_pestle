@@ -9,11 +9,14 @@
 
 	<script src="js/jquery-2.1.3.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/myscript.js"></script>
 	<script src="js/unislider.js"></script>
+
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script src="js/myscript.js"></script>
 </head>
 
-<body>
+<body ng-app="daspestleApp" ng-controller="MainController">
 	<!-- NAVBAR -->
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
@@ -31,25 +34,24 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	        <li><a href="{{url('/')}}">Home</a></li>
-	        <li><a href="{{url('/politic')}}">Politic</a></li>
-	        <li><a href="{{url('/economy')}}">Economy</a></li>
-	        <li><a href="{{url('/social')}}">Social</a></li>
-	        <li><a href="{{url('/technology')}}">Technology</a></li>
-	        <li><a href="{{url('/legal')}}">Legal</a></li>
-	        <li><a href="{{url('/environment')}}">Environment</a></li>
+	        <li><a href="#">Home</a></li>
+	        <li><a href="#/politic">Politic</a></li>
+	        <li><a href="#/economy">Economy</a></li>
+	        <li><a href="#/social">Social</a></li>
+	        <li><a href="#/technology">Technology</a></li>
+	        <li><a href="#/legal">Legal</a></li>
+	        <li><a href="#/environment">Environment</a></li>
 	      </ul>
 	      
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a href="{{url('/keyword')}}">Keyword Settings</a></li>
+	      	<li><a href="#/keyword">Keyword Settings</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 
 	<!-- MAIN -->
-	<div class="container">
-		@yield('isi')
+	<div class="container" ng-view>
 	</div>
 
 	<!-- FOOTER -->

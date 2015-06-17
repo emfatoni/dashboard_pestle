@@ -21,7 +21,7 @@ class DashboardController extends Controller {
 	}
 	public function index()
 	{
-		return view('daspestle/home');
+		return view('template');
 	}
 
 	public function politic()
