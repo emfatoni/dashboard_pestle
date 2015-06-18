@@ -13,6 +13,10 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl: 'pages/keyword.html',
 		controller: 'KeywordController'
 	});
+	$routeProvider.when('/site', {
+		templateUrl: 'pages/site.html',
+		controller: 'SiteController',
+	});
 	$routeProvider.when('/environment', {
 		templateUrl: 'pages/environment.html',
 	});
@@ -54,7 +58,7 @@ app.factory("SiteSvc", function($http){
 		},
 		create: function(data)
 		{
-			return $http.get('site/create', data);
+			return $http({method: 'GET', url:'site/create', params:data});
 		},
 		get: function(id)
 		{
@@ -78,7 +82,7 @@ app.factory("ConditionSvc", function($http){
 		},
 		create: function(data)
 		{
-			return $http.get('condition/create', data);
+			return $http({method: 'GET', url:'site/create', params:data});
 		},
 		get: function(id)
 		{
@@ -99,19 +103,13 @@ app.factory("ConditionSvc", function($http){
 app.controller('MainController', function($scope, $location){
 	//
 });
-app.controller('KeywordController', function($scope, $location, MetricSvc, SiteSvc){
+app.controller('KeywordController', function($scope, $location, MetricSvc){
 
 	// get all data
 	$scope.get_metrics = function(){
 		var req = MetricSvc.all();
 		req.success(function(res){
 			$scope.metrics = res;
-		});
-	}
-	$scope.get_sites = function(){
-		var req = SiteSvc.all();
-		req.success(function(res){
-			$scope.sites = res;
 		});
 	}
 
@@ -144,6 +142,97 @@ app.controller('KeywordController', function($scope, $location, MetricSvc, SiteS
 			$scope.temp_metric = res;
 			$scope.is_loading = false;
 		});
+	}
+
+});
+app.controller('SiteController', function($scope, $location, SiteSvc){
+	
+	// get all data
+	$scope.get_sites = function(){
+		var req = SiteSvc.all();
+		req.success(function(res){
+			$scope.sites = res;
+		});
+	}
+
+	// initiate
+	$scope.get_sites();
+	$scope.temp_site = {
+		"id": "",
+		"name": "",
+		"url": "",
+		"id_metric": ""
+		
+	};
+	$scope.is_edit = false;
+	$scope.is_loading = false;
+
+	// functions
+	$scope.empty_site = function(){
+		$scope.temp_site = {
+			"id": "",
+			"name": "",
+			"url": "",
+			"id_metric": ""
+			
+		};
+	}
+	$scope.site_add = function(){
+		$scope.is_loading = true;
+		var req = SiteSvc.create($scope.temp_site);
+		req.success(function(res){
+			alert(res.status);
+			$scope.get_sites();
+			$scope.is_loading = false;
+		});
+	}
+	$scope.site_edit = function(){
+		$scope.is_loading = true;
+		var req = SiteSvc.update($scope.temp_site.id, $scope.temp_site);
+		req.success(function(res){
+			alert(res.status);
+			$scope.get_sites();
+			$scope.empty_site();
+			$scope.is_edit = false;
+			$scope.is_loading = false;
+		});
+	}
+	$scope.site_del = function(){
+		$scope.is_loading = true;
+		var req = SiteSvc.delete($scope.temp_site.id);
+		req.success(function(res){
+			alert(res.status);
+			$scope.get_sites();
+			$scope.empty_site();
+			$scope.is_edit = false;
+			$scope.is_loading = false;
+		});
+	}
+	$scope.get_site = function(id){
+		$scope.is_loading = true;
+		var req = SiteSvc.get(id);
+		req.success(function(res){
+			$scope.temp_site = res;
+			$scope.is_edit = true;
+			$scope.is_loading = false;
+		})
+	}
+	$scope.get_type = function(id){
+		if(id == 1){
+			return "politic";
+		}else if(id == 2){
+			return "social";
+		}else if(id == 3){
+			return "economy";
+		}else if(id == 4){
+			return "technology";
+		}else if(id == 5){
+			return "legal";
+		}else if(id == 6){
+			return "environment";
+		}else{
+			return "general";
+		}
 	}
 
 });

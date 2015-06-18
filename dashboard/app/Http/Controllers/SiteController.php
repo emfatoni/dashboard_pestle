@@ -31,7 +31,7 @@ class SiteController extends Controller {
 		$new->url = $req->input('url');
 		$new->id_metric = $req->input('id_metric');
 
-		if($new->save)
+		if($new->save())
 		{
 			return array('status'=>'Saved!');
 		}

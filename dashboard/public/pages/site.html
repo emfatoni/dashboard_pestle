@@ -1,0 +1,67 @@
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-12">
+					<h1 class="text-center">MANAGE WEBSITES</h1>
+					<p class="text-center"><span class="lead" ng-show="is_loading">Loading. . .</span></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin-top: 30px">
+			<div class="col-md-4">
+				<div class="col-md-12">
+					<form>
+						<div class="form-group">
+							<label>Metric:</label>
+							<select class="form-control" ng-model="temp_site.id_metric">
+								<option value="1">Politic</option>
+								<option value="3">Economy</option>
+								<option value="2">Social</option>
+								<option value="4">Technology</option>
+								<option value="5">Legal</option>
+								<option value="6">Environment</option>
+								<option value="8">General</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Name:</label>
+							<input type="text" class="form-control" ng-model="temp_site.name">
+						</div>
+						<div class="form-group">
+							<label>URL:</label>
+							<textarea class="form-control" rows="4" ng-model="temp_site.url"></textarea>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary" ng-click="site_add()" ng-show="!is_edit">Add</button>
+							<button class="btn btn-success" ng-click="site_edit()" ng-show="is_edit">Save Changes</button>
+							<button class="btn btn-danger" ng-click="site_del()" ng-show="is_edit">Delete</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="col-md-12">
+					<table class="table table-condensed table-bordered">
+						<thead>
+							<tr>
+								<th class="text-center">Name</th>
+								<th class="text-center">URL</th>
+								<th class="text-center">Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="site in sites">
+								<td ng-click="get_site(site.id)"><a href="">{{site.name}}</a></td>
+								<td>
+									{{site.url}}
+								</td>
+								<td>
+									{{get_type(site.id_metric)}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
