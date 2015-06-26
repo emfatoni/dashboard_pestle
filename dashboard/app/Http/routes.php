@@ -26,11 +26,13 @@ Route::get('keyword', 'DashboardController@keyword');
 Route::resource('metric', 'MetricController');
 Route::resource('site', 'SiteController');
 Route::resource('condition', 'ConditionController');
+Route::resource('crawlered', 'CrawleredController');
 
 /* Percobaan-percobaan */
 Route::get('test', 'DashboardController@test');
 Route::get('cek', 'DashboardController@cek');
 Route::get('cek2', 'DashboardController@cek2');
+Route::get('crawl', 'DashboardController@crawling');
 
 /* dari Laravel 5 */
 Route::get('home', 'HomeController@index');
