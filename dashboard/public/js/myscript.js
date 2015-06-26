@@ -8,6 +8,7 @@ app.run(function(){
 app.config(function($routeProvider, $locationProvider){
 	$routeProvider.when('/', {
 		templateUrl: 'pages/home.html',
+		controller: 'HomeController',
 	});
 	$routeProvider.when('/keyword', {
 		templateUrl: 'pages/keyword.html',
@@ -102,6 +103,19 @@ app.factory("ConditionSvc", function($http){
 /* CONTROLLER */
 app.controller('MainController', function($scope, $location){
 	//
+});
+app.controller('HomeController', function($scope, $location, ConditionSvc){
+
+	$scope.get_conditions = function(){
+		var req = ConditionSvc.all();
+		req.success(function(res){
+			$scope.conditions = res;
+		});
+	}
+
+	// init
+	$scope.get_conditions();
+
 });
 app.controller('KeywordController', function($scope, $location, MetricSvc){
 

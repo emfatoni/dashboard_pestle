@@ -32,7 +32,7 @@ Route::resource('crawlered', 'CrawleredController');
 Route::get('test', 'DashboardController@test');
 Route::get('cek', 'DashboardController@cek');
 Route::get('cek2', 'DashboardController@cek2');
-Route::get('crawl', 'DashboardController@crawling');
+Route::get('crawl', 'DashboardController@muain');
 
 /* dari Laravel 5 */
 Route::get('home', 'HomeController@index');

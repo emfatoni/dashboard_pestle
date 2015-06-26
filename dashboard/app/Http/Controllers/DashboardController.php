@@ -165,10 +165,11 @@ class DashboardController extends Controller {
 			$temp = array();
 			$temp["title"] = $site->title;
 			$temp["url"] = $site->link;
-			$temp["title"] = $site->title;
+			$temp["website"] = $site->displayLink;
+			$out[] = $temp;
 		}
 
-		print_r($hsl['items'][0]->title);
+		return $out;
 	}
 
 
@@ -188,6 +189,72 @@ class DashboardController extends Controller {
 
 		$que = $politic_key[0].' '.$area_key[0];
 
-		$this->crawl(str_replace(' ', '+', $que));
-	}	
+		// $urls = $this->crawl(str_replace(' ', '+', $que));
+
+		foreach($urls as $url){
+			$new = new Crawlered();
+			$new->title = $url['title'];
+			$new->url = $url['url'];
+			$new->website = $url['website'];
+
+			$new->save();
+		}
+
+		// dd($urls);
+	}
+
+	public function analyze($obj){
+		
+		$resource = $obj->url;
+		$type = 'text';
+
+		$url = 'http://localhost:88/dashboard_pestle/alchemyapi/services.php';
+
+		$data = array(
+			'flavor' => 'url',
+			'data' => $resource,
+			'type' => $type,
+			);
+
+		$options = array(
+			'http' => array(
+				'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method' => 'POST',
+				'content' => http_build_query($data),
+				),
+			);
+		$context = stream_context_create($options);
+		$res = file_get_contents($url, false, $context);
+
+		$mg = (array) json_decode($res);
+
+		// while()
+
+		return $mg;
+	}
+
+	public function muain()
+	{
+		$urls = Crawlered::all();
+		$arr = array();
+
+		$berhasil = 0;
+
+		foreach($urls as $url){
+			// $arr[] = $url;
+			// echo $url->title."<br>";
+			$wow = $this->analyze($url);
+
+			if($wow['status'] == 'OK'){
+				$url->content = $wow['text'];
+				if($url->save()){
+					$berhasil++;
+				}
+			}
+		}
+
+		echo $berhasil;
+	}
+
 }
+
