@@ -1,4 +1,4 @@
-var app = angular.module('daspestleApp', ['ngRoute']);
+var app = angular.module('daspestleApp', ['ngRoute', 'ui.bootstrap']);
 
 app.run(function(){
 	//
@@ -100,6 +100,22 @@ app.factory("ConditionSvc", function($http){
 	}
 });
 
+app.filter('pestle', function(){
+	return function(inputs, jenis){
+		var terfilter = [];
+		if(jenis === undefined || jenis === ''){
+			return inputs;
+		}
+
+		angular.forEach(inputs, function(item){
+			if(jenis === item.id_metric){
+				terfilter.push(item);
+			}
+		});
+		return terfilter;
+	}
+});
+
 /* CONTROLLER */
 app.controller('MainController', function($scope, $location){
 	//
@@ -110,11 +126,28 @@ app.controller('HomeController', function($scope, $location, ConditionSvc){
 		var req = ConditionSvc.all();
 		req.success(function(res){
 			$scope.conditions = res;
+			// $('#economy-box').unslider();
 		});
 	}
 
 	// init
 	$scope.get_conditions();
+
+	// fungsi
+	$scope.get_factor = function(jenis){
+		var terfilter = [];
+		if(jenis === undefined || jenis === ''){
+			return $scope.conditions;
+		}
+
+		angular.forEach($scope.conditions, function(item) {
+			if(jenis === item.id_metric){
+				terfilter.push(item);
+			}
+		});
+
+		return terfilter;
+	}
 
 });
 app.controller('KeywordController', function($scope, $location, MetricSvc){

@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/fd-colors.css">
 	<link rel="stylesheet" type="text/css" href="css/my-style.css">
+	<link rel="stylesheet" type="text/css" href="css/angular-carousel.css">
 
 	<script src="js/jquery-2.1.3.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
@@ -13,6 +14,9 @@
 
 	<script src="js/angular.js"></script>
 	<script src="js/angular-route.js"></script>
+	<script src="js/ui-bootstrap.js"></script>
+	<script src="js/angular-touch.min.js"></script>
+	<script src="js/angular-carousel.js"></script>
 	<script src="js/myscript.js"></script>
 </head>
 

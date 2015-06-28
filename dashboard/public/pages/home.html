@@ -41,23 +41,21 @@
 				<div class="col-md-12 fd-box-turquoise fd-txt-white db-box">
 					<div class="condition-wrapper" id="economy-box">
 						<ul>
-							<li>
-								<p><i class="glyphicon glyphicon-minus-sign"></i> <i class="glyphicon glyphicon-new-window pull-right"></i></p>
-								<p>European fiscal policy has been to set high fuel taxes</p>
-								<span>Nama Website | 2015-06-16</span>
-							</li>
-							<li>
-								<p><i class="glyphicon glyphicon-minus-sign"></i> <i class="glyphicon glyphicon-new-window pull-right"></i></p>
-								<p>European fiscal policy has been to set high fuel taxes 2</p>
-								<span>Nama Website | 2015-06-16</span>
-							</li>
-							<li>
-								<p><i class="glyphicon glyphicon-minus-sign"></i> <i class="glyphicon glyphicon-new-window pull-right"></i></p>
-								<p>European fiscal policy has been to set high fuel taxes 3</p>
-								<span>Nama Website | 2015-06-16</span>
+							<li ng-repeat="item in get_factor(3)">
+								<p><i class="glyphicon glyphicon-minus-sign"></i> <a href="{{item.url}}"><i class="glyphicon glyphicon-new-window pull-right"></i></a></p>
+								<p>{{item.condition}}</p>
+								<span>{{item.website}} | {{item.date}}</span>
 							</li>
 						</ul>
 					</div>
+
+					<!-- <carousel interval="3000">
+				      <slide ng-repeat="item in get_factor(3)" active="slide.active">
+				    	<p><i class="glyphicon glyphicon-minus-sign"></i> <a href="{{item.url}}"><i class="glyphicon glyphicon-new-window pull-right"></i></a></p>
+						<p>{{item.condition}}</p>
+						<span>{{item.website}} | {{item.date}}</span>
+				      </slide>
+				    </carousel>-->
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -67,20 +65,10 @@
 				<div class="col-md-12 fd-box-peter-river fd-txt-white db-box">
 					<div class="condition-wrapper" id="social-box">
 						<ul>
-							<li>
-								<p><i class="glyphicon glyphicon-minus-sign"></i> <i class="glyphicon glyphicon-new-window pull-right"></i></p>
-								<p>European fiscal policy has been to set high fuel taxes</p>
-								<span>Nama Website | 2015-06-16</span>
-							</li>
-							<li>
-								<p><i class="glyphicon glyphicon-minus-sign"></i> <i class="glyphicon glyphicon-new-window pull-right"></i></p>
-								<p>European fiscal policy has been to set high fuel taxes 2</p>
-								<span>Nama Website | 2015-06-16</span>
-							</li>
-							<li>
-								<p><i class="glyphicon glyphicon-minus-sign"></i> <i class="glyphicon glyphicon-new-window pull-right"></i></p>
-								<p>European fiscal policy has been to set high fuel taxes 3</p>
-								<span>Nama Website | 2015-06-16</span>
+							<li ng-repeat="item in get_factor(2)">
+								<p><i class="glyphicon glyphicon-minus-sign"></i> <a href="{{item.url}}"><i class="glyphicon glyphicon-new-window pull-right"></i></a></p>
+								<p>{{item.condition}}</p>
+								<span>{{item.website}} | {{item.date}}</span>
 							</li>
 						</ul>
 					</div>
@@ -150,17 +138,17 @@
 						<ul>
 							<li>
 								<p><i class="glyphicon glyphicon-minus-sign"></i> <i class="glyphicon glyphicon-new-window pull-right"></i></p>
-								<p>European fiscal policy has been to set high fuel taxes</p>
+								<p>China's premier, Li Keqiang, cut the country's growth target to 70%</p>
 								<span>Nama Website | 2015-06-16</span>
 							</li>
 							<li>
 								<p><i class="glyphicon glyphicon-minus-sign"></i> <i class="glyphicon glyphicon-new-window pull-right"></i></p>
-								<p>European fiscal policy has been to set high fuel taxes 2</p>
+								<p>Li warned the opening session of the National People's Congress (NPC), the tightly controlled legislature, as he delivered the government?s work report.</p>
 								<span>Nama Website | 2015-06-16</span>
 							</li>
 							<li>
 								<p><i class="glyphicon glyphicon-minus-sign"></i> <i class="glyphicon glyphicon-new-window pull-right"></i></p>
-								<p>European fiscal policy has been to set high fuel taxes 3</p>
+								<p>China's leftists have drawn renewed hope from some aspects of Xi's leadership, including his fulminations against western values.</p>
 								<span>Nama Website | 2015-06-16</span>
 							</li>
 						</ul>
@@ -170,11 +158,15 @@
 		</div>
 		<script type="text/javascript">
 			$(function() {
-			    $('#politic-box').unslider();
+				setTimeout(function(){
+					$('#politic-box').unslider();
 			    $('#economy-box').unslider();
 			    $('#social-box').unslider();
 			    $('#technology-box').unslider();
 			    $('#legal-box').unslider();
 			    $('#environment-box').unslider();
+  //your code to be executed after 1 seconds
+				}, 5000); 
+			    
 			});
 		</script>
