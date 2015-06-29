@@ -7,8 +7,8 @@ app.run(function(){
 /* ROUTES */
 app.config(function($routeProvider, $locationProvider){
 	$routeProvider.when('/', {
-		templateUrl: 'pages/home.html',
-		controller: 'HomeController',
+		templateUrl: 'pages/home_new.html',
+		controller: 'HomeNewController',
 	});
 	$routeProvider.when('/keyword', {
 		templateUrl: 'pages/keyword.html',
@@ -118,6 +118,9 @@ app.filter('pestle', function(){
 
 /* CONTROLLER */
 app.controller('MainController', function($scope, $location){
+	//
+});
+app.controller('HomeNewController', function($scope, $location){
 	//
 });
 app.controller('HomeController', function($scope, $location, ConditionSvc){

@@ -1,0 +1,269 @@
+<div class="row">
+	<div class="col-md-12">
+		<h1 class="text-center">PESTLE DASHBOARD</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<h3 class="text-center">Politic</h3>
+		<div class="col-md-12 well">
+			<div id="politic-gpc" style="height: 250px"></div>
+			<div style="margin-top: 15px">
+				<span class="label label-danger">refugee</span>
+				<span class="label label-danger">human rights</span>
+				<span class="label label-danger">mainland china</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<h3 class="text-center">Economy</h3>
+		<div class="col-md-12 well">
+			<div id="economy-gpc" style="height: 250px"></div>
+			<div style="margin-top: 15px">
+				<span class="label label-primary">Government Stability</span>
+				<span class="label label-danger">Citizen Mob</span>
+				<span class="label label-success">Election</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<h3 class="text-center">Social</h3>
+		<div class="col-md-12 well">
+			<div id="social-gpc" style="height: 250px"></div>
+			<div style="margin-top: 15px">
+				<span class="label label-primary">Government Stability</span>
+				<span class="label label-danger">Citizen Mob</span>
+				<span class="label label-success">Election</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<h3 class="text-center">Technology</h3>
+		<div class="col-md-12 well">
+			<div id="technology-gpc" style="height: 250px"></div>
+			<div style="margin-top: 15px">
+				<span class="label label-primary">Government Stability</span>
+				<span class="label label-danger">Citizen Mob</span>
+				<span class="label label-success">Election</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<h3 class="text-center">Legal</h3>
+		<div class="col-md-12 well">
+			<div id="legal-gpc" style="height: 250px"></div>
+			<div style="margin-top: 15px">
+				<span class="label label-primary">Government Stability</span>
+				<span class="label label-danger">Citizen Mob</span>
+				<span class="label label-success">Election</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<h3 class="text-center">Environment</h3>
+		<div class="col-md-12 well">
+			<div id="environment-gpc" style="height: 250px"></div>
+			<div style="margin-top: 15px">
+				<span class="label label-primary">Government Stability</span>
+				<span class="label label-danger">Citizen Mob</span>
+				<span class="label label-success">Election</span>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('#politic-gpc').highcharts({
+    		chart: {
+				type: 'column'
+			},
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: ['Positive', 'Mixed', 'Negative']
+			},	
+			yAxis: {
+				title: {
+					text: 'Jumlah'
+				}
+			},
+			series: [{
+				name: 'Sentiment',
+				data: [0, 0, 3],
+				pointWidth: 20
+			}],
+			plotOptions: {
+				column: {
+					colorByPoint: true,
+					colors: [
+						'#27ae60',
+						'#3498db',
+						'#c0392b'
+					],
+				}
+			}
+		});
+
+		$('#economy-gpc').highcharts({
+    		chart: {
+				type: 'column'
+			},
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: ['Positive', 'Mixed', 'Negative']
+			},	
+			yAxis: {
+				title: {
+					text: 'Jumlah'
+				}
+			},
+			series: [{
+				name: 'Sentiment',
+				data: [7, 10, 4],
+				pointWidth: 20
+			}],
+			plotOptions: {
+				column: {
+					colorByPoint: true,
+					colors: [
+						'#27ae60',
+						'#3498db',
+						'#c0392b'
+					],
+				}
+			}
+		});
+
+		$('#social-gpc').highcharts({
+    		chart: {
+				type: 'column'
+			},
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: ['Positive', 'Mixed', 'Negative']
+			},	
+			yAxis: {
+				title: {
+					text: 'Jumlah'
+				}
+			},
+			series: [{
+				name: 'Sentiment',
+				data: [7, 10, 4],
+				pointWidth: 20
+			}],
+			plotOptions: {
+				column: {
+					colorByPoint: true,
+					colors: [
+						'#27ae60',
+						'#3498db',
+						'#c0392b'
+					],
+				}
+			}
+		});
+
+		$('#technology-gpc').highcharts({
+    		chart: {
+				type: 'column'
+			},
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: ['Positive', 'Mixed', 'Negative']
+			},	
+			yAxis: {
+				title: {
+					text: 'Jumlah'
+				}
+			},
+			series: [{
+				name: 'Sentiment',
+				data: [7, 10, 4],
+				pointWidth: 20
+			}],
+			plotOptions: {
+				column: {
+					colorByPoint: true,
+					colors: [
+						'#27ae60',
+						'#3498db',
+						'#c0392b'
+					],
+				}
+			}
+		});
+
+		$('#legal-gpc').highcharts({
+    		chart: {
+				type: 'column'
+			},
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: ['Positive', 'Mixed', 'Negative']
+			},	
+			yAxis: {
+				title: {
+					text: 'Jumlah'
+				}
+			},
+			series: [{
+				name: 'Sentiment',
+				data: [7, 10, 4],
+				pointWidth: 20
+			}],
+			plotOptions: {
+				column: {
+					colorByPoint: true,
+					colors: [
+						'#27ae60',
+						'#3498db',
+						'#c0392b'
+					],
+				}
+			}
+		});
+
+		$('#environment-gpc').highcharts({
+    		chart: {
+				type: 'column'
+			},
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: ['Positive', 'Mixed', 'Negative']
+			},	
+			yAxis: {
+				title: {
+					text: 'Jumlah'
+				}
+			},
+			series: [{
+				name: 'Sentiment',
+				data: [7, 10, 4],
+				pointWidth: 20
+			}],
+			plotOptions: {
+				column: {
+					colorByPoint: true,
+					colors: [
+						'#27ae60',
+						'#3498db',
+						'#c0392b'
+					],
+				}
+			}
+		});
+	});
+</script>
