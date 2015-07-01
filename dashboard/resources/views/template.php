@@ -48,7 +48,7 @@
 	      
 	      <ul class="nav navbar-nav navbar-right">
 	      	<li><a href="#/keyword">Keywords</a></li>
-	      	<li><a href="#/site">Websites</a></li>
+	      	<!--<li><a href="#/site">Websites</a></li>-->
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
