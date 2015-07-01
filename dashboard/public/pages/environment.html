@@ -8,6 +8,19 @@
 		</div>
 
 		<div class="row">
+			<div class="col-md-4">
+				<div class="col-md-12 well">
+					<div id="environment-gpc" style="height: 250px"></div>
+					<div style="margin-top: 15px">
+						<span class="label label-primary">environmental crisis</span>
+						<span class="label label-success">off the grid in china</span>
+						<span class="label label-danger">environmental concern</span>
+						<span class="label label-danger">china's environment</span>
+						<span class="label label-success">environmentally friendly consumers</span>
+					</div>
+				</div>
+			</div>
+
 			<div class="col-md-4 condition-container">
 				<div class="col-md-12 fd-box-turquoise fd-txt-white condition-box">
 					<p><i class="glyphicon glyphicon-plus-sign"></i> <a href="http://sinosphere.blogs.nytimes.com/2015/06/15/living-largely-off-the-grid-in-china/" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
@@ -29,5 +42,72 @@
 					<p>In early March, a debate over China’s action (or inaction) on the environment gripped both Chinese and international media. While air pollution and other environmental degradation have long been widely acknowledged, it was not until Chai Jing, one of China’s best known journalists, unveiled her self-financed 104-minute documentary Under The Dome, which features China’s catastrophic air pollution, that the government’s position on the environment became a nationwide, policy-oriented debate among intellectuals, policymakers, bureaucrats, and the Chinese public.</p>
 				</div>
 			</div>
+
+			<div class="col-md-4 condition-container">
+				<div class="col-md-12 fd-box-peter-river fd-txt-white condition-box">
+					<p><i class="glyphicon glyphicon-record"></i> <a href="http://www.cfr.org/china/chinas-environmental-crisis/p12608" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
+					<p class="lead" style="margin-bottom: 5px">China's Environmental Crisis</p>
+
+					<p>2015-06-15 | rfg.org</p>
+
+					<p>China's environmental crisis is one of the most pressing challenges to emerge from the country's rapid industrialization. Its economic rise, which has averaged around 10 percent annual GDP growth for the past decade, has come at the expense of its environment and public health. As the world's largest source of carbon emissions, China is responsible for a third of the planet's greenhouse gas output and has sixteen of the world's twenty most polluted cities.</p>
+				</div>
+			</div>
+
+			<div class="col-md-4 condition-container">
+				<div class="col-md-12 fd-box-pomegranate fd-txt-white condition-box">
+					<p><i class="glyphicon glyphicon-minus-sign"></i> <a href="http://www.livescience.com/27862-china-environmental-problems.html" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
+					<p class="lead" style="margin-bottom: 5px">China's Top 6 Environmental Concerns</p>
+
+					<p>2015-06-15 | livescience.com</p>
+
+					<p>China's environmental crises seem to arise on a scale as sweeping and epic as the vast nation itself: Thousands of dead, bloated pigs floating down the river that supplies Shanghai with its drinking water. Air pollution in Beijing so impenetrable the U.S. Embassy's air quality measuring station can only call it "beyond index." Industrial towns where rates of cancer are so high they're known as "cancer villages."</p>
+				</div>
+			</div>
+
+			<div class="col-md-4 condition-container">
+				<div class="col-md-12 fd-box-turquoise fd-txt-white condition-box">
+					<p><i class="glyphicon glyphicon-plus-sign"></i> <a href="http://www.chinabusinessreview.com/environmentally-friendly-consumers-emerge/"><i class="glyphicon glyphicon-new-window"></i></a></p>
+					<p class="lead" style="margin-bottom: 5px">Environmentally Friendly Consumers Emerge</p>
+
+					<p>2015-06-15 | chinabusinessreview.com</p>
+
+					<p>PRC government policies and consumer preferences are going green, presenting new opportunities for US companies to sell sustainable products in China.</p>
+				</div>
+			</div>
 			
 		</div>
+
+<script type="text/javascript">
+	$('#environment-gpc').highcharts({
+    		chart: {
+				type: 'column'
+			},
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: ['Positive', 'Neutral', 'Negative']
+			},	
+			yAxis: {
+				title: {
+					text: 'Jumlah'
+				}
+			},
+			series: [{
+				name: 'Sentiment',
+				data: [2, 1, 2],
+				pointWidth: 20
+			}],
+			plotOptions: {
+				column: {
+					colorByPoint: true,
+					colors: [
+						'#27ae60',
+						'#3498db',
+						'#c0392b'
+					],
+				}
+			}
+		});
+</script>
