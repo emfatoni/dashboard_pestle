@@ -36,14 +36,44 @@ app.factory("TestSvc", function($http){
 		crawl: function(data)
 		{
 			return $http({method: 'GET', url:'dashboard/crawl', params:data});
+		},
+		content: function(data)
+		{
+			return $http({method: 'GET', url:'dashboard/content', params:data});
+		},
+		keyword: function(data)
+		{
+			return $http({method: 'GET', url:'dashboard/keyword', params:data});
+		},
+		sentiment: function(data)
+		{
+			return $http({method: 'GET', url:'dashboard/sentiment', params:data});
 		}
 	}
 });
-app.controller('TestController', function($scope, $location, TestSvc){
+app.controller('TestController', function($scope, $location, TestSvc, $filter){
 
 	$scope.query = "";
 	$scope.is_loading1 = false;
 	$scope.is_loading2 = false;
+	$scope.is_loading3 = false;
+	$scope.is_loading4 = false;
+
+	$scope.news_now = {
+		"title": "",
+		"url": "",
+		"website": ""
+	};
+
+	$scope.url_news = "";
+	$scope.content_news = "";
+	$scope.keyword_news = "";
+	$scope.sentiment_news = "";
+
+	$scope.get_url_news = function(url_find){
+		$scope.news_now = $filter('filter')($scope.urls, {url:url_find})[0];
+		console.log($scope.news_now);
+	}
 
 	$scope.crawl = function(){
 		$scope.is_loading1 = true;
@@ -53,6 +83,53 @@ app.controller('TestController', function($scope, $location, TestSvc){
 			$scope.is_loading1 = false;
 			$scope.urls = res;
 		});
+	}
+
+	$scope.content = function(){
+		$scope.is_loading2 = true;
+		var obj = {"url": $scope.news_now.url};
+		var req = TestSvc.content(obj);
+		req.success(function(res){
+			$scope.is_loading2 = false;
+			$scope.content_news = res;
+			console.log($scope.content_news);
+		});
+	}
+
+	$scope.keyword = function(){
+		$scope.is_loading4 = true;
+		var obj = {"title": $scope.news_now.title};
+		var req = TestSvc.keyword(obj);
+		req.success(function(res){
+			$scope.is_loading4 = false;
+			$scope.keyword_news = res;
+			console.log($scope.keyword_news);
+		});
+	}
+
+	$scope.sentiment = function(){
+		$scope.is_loading3 = true;
+		var obj = {"text": $scope.content_news.text};
+		var req = TestSvc.sentiment(obj);
+		req.success(function(res){
+			$scope.is_loading3 = false;
+			$scope.sentiment_news = res;
+			console.log($scope.sentiment_news);
+		});
+	}
+
+	$scope.get_label = function(sentiment){
+		if(sentiment === 'positive'){
+			return 'label-success';
+		}else if(sentiment === 'negative'){
+			return 'label-danger';
+		}else{
+			return 'label-primary';
+		}
+	}
+
+	$scope.get_summ = function(){
+		$scope.summ_news = $scope.content_news.text.split('\n')[0];
 	}
 
 });

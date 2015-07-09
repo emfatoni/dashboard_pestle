@@ -149,52 +149,6 @@ class DashboardController extends Controller {
 		echo "</code></pre>";
 	}
 
-	public function crawl(Request $req)
-	{
-		$q = $req->input('query');
-
-		if(($q === null)||($q === '')){
-			return json_encode(array('status' => 'query empty'));
-		}
-
-		$q = str_replace(' ', '+', $q);
-
-		$key = 'AIzaSyCuXlh6HdSLy-hjxlnpOUv7uH58Mon7PTY';
-		$cx = '010284409504547172167:v_6u_hoi8rq';
-
-		$qstring = 'https://www.googleapis.com/customsearch/v1?'.'key='.$key.'&cx='.$cx.'&q='.$q;
-		
-		/*$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $qstring);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$data = curl_exec($ch);
-		curl_close($ch);
-
-		$hsl = (array) json_decode($data);
-
-		return json_encode($data);
-
-		//$opt = array('key'=>)*/
-
-		$reqs = file_get_contents($qstring);
-
-		$hsl = (array) json_decode($reqs);
-
-		$out = array();
-		$sites = $hsl['items'];
-
-		foreach($sites as $site){
-			$temp = array();
-			$temp["title"] = $site->title;
-			$temp["url"] = $site->link;
-			$temp["website"] = $site->displayLink;
-			$out[] = $temp;
-		}
-
-		return json_encode($out);
-	}
-
-
 	public function crawling()
 	{
 		// AREA
@@ -276,6 +230,125 @@ class DashboardController extends Controller {
 		}
 
 		echo $berhasil;
+	}
+
+	// //
+
+	public function crawl(Request $req)
+	{
+		$q = $req->input('query');
+
+		if(($q === null)||($q === '')){
+			return json_encode(array('status' => 'query empty'));
+		}
+
+		$q = str_replace(' ', '+', $q);
+
+		$key = 'AIzaSyCuXlh6HdSLy-hjxlnpOUv7uH58Mon7PTY';
+		$cx = '010284409504547172167:v_6u_hoi8rq';
+
+		$qstring = 'https://www.googleapis.com/customsearch/v1?'.'key='.$key.'&cx='.$cx.'&q='.$q;
+
+		$reqs = file_get_contents($qstring);
+
+		$hsl = (array) json_decode($reqs);
+
+		$out = array();
+		$sites = $hsl['items'];
+
+		foreach($sites as $site){
+			$temp = array();
+			$temp["title"] = $site->title;
+			$temp["url"] = $site->link;
+			$temp["website"] = $site->displayLink;
+			$out[] = $temp;
+		}
+
+		return json_encode($out);
+	}
+
+	public function content_ext(Request $req){
+		
+		$resource = $req->input('url');
+		$type = 'text';
+
+		$url = 'http://localhost:88/dashboard_pestle/alchemyapi/services.php';
+
+		$data = array(
+			'flavor' => 'url',
+			'data' => $resource,
+			'type' => $type,
+			);
+
+		$options = array(
+			'http' => array(
+				'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method' => 'POST',
+				'content' => http_build_query($data),
+				),
+			);
+		$context = stream_context_create($options);
+		$res = file_get_contents($url, false, $context);
+
+		$mg = (array) json_decode($res);
+
+		return json_encode($mg);
+	}
+
+	public function keyword_ext(Request $req){
+		
+		$resource = $req->input('title');
+		$type = 'keyword';
+
+		$url = 'http://localhost:88/dashboard_pestle/alchemyapi/services.php';
+
+		$data = array(
+			'flavor' => 'text',
+			'data' => $resource,
+			'type' => $type,
+			);
+
+		$options = array(
+			'http' => array(
+				'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method' => 'POST',
+				'content' => http_build_query($data),
+				),
+			);
+		$context = stream_context_create($options);
+		$res = file_get_contents($url, false, $context);
+
+		$mg = (array) json_decode($res);
+
+		return json_encode($mg);
+	}
+
+	public function sentiment_anl(Request $req){
+		
+		$resource = $req->input('text');
+		$type = 'sentiment';
+
+		$url = 'http://localhost:88/dashboard_pestle/alchemyapi/services.php';
+
+		$data = array(
+			'flavor' => 'text',
+			'data' => $resource,
+			'type' => $type,
+			);
+
+		$options = array(
+			'http' => array(
+				'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method' => 'POST',
+				'content' => http_build_query($data),
+				),
+			);
+		$context = stream_context_create($options);
+		$res = file_get_contents($url, false, $context);
+
+		$mg = (array) json_decode($res);
+
+		return json_encode($mg);
 	}
 
 }

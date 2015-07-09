@@ -30,5 +30,13 @@ if(empty($_POST["flavor"])||empty($_POST["data"])||empty($_POST["type"])){
 		}else{
 			echo json_encode(array("status"=>"not_success", "message"=>"API calling failed!"));
 		}
+	}else if($_POST["type"] == "sentiment"){
+		$res = $api->sentiment($_POST["flavor"], $_POST["data"], null);
+
+		if($res["status"] == "OK"){
+			echo json_encode($res, JSON_PRETTY_PRINT);
+		}else{
+			echo json_encode(array("status"=>"not_success", "message"=>"API calling failed!"));
+		}
 	}
 }

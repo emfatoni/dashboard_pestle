@@ -18,7 +18,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="url in urls">
-						<td>{{url.title}}</td>
+						<td><a href="" ng-click="get_url_news(url.url)">{{url.title}}</a></td>
 						<td><a href="{{url.url}}">{{url.url}}</a></td>
 					</tr>
 				</tbody>
@@ -28,20 +28,25 @@
 	<div class="col-md-12 well" style="margin-top: 30px">
 		<div class="col-md-4">
 			<p class="lead">Enter URL:</p>
-			<input class="form-control" type="text" placeholder="URL">
+			<input class="form-control" type="text" placeholder="URL" ng-model="news_now.url">
 			<br>
-			<button class="btn btn-primary">Extract</button>
+			<button class="btn btn-primary" ng-click="content()">Extract</button>
+			<button class="btn btn-success" ng-click="sentiment()">Sentiment</button>
+			<button class="btn btn-warning" ng-click="keyword()">Keyword</button>
+			<button class="btn" ng-click="get_summ()">Summary</button>
 			<p ng-show="is_loading2">Loading. . .</p>
 		</div>
 		<div class="col-md-8">
 			<p>Main Text:</p>
-			<textarea class="form-control" rows="6"></textarea>
+			<textarea class="form-control" rows="6">{{content_news.text}}</textarea>
 			<br>
 			<div class="col-md-6" style="height: 250px" id="gpc-box">
 			</div>
 			<div class="col-md-6">
-				<p><b>Sentiment:</b> Positive</p>
-				<p><b>Keywords:</b> <span class="label label-danger">Nuclear War</span></p>
+				<p><b>Sentiment:</b> <span ng-show="is_loading3">Loading...</span><span ng-show="!is_loading3">{{sentiment_news.docSentiment.type}}</span></p>
+				<p><b>Keywords:</b> <span ng-show="is_loading4">Loading...</span><span class="label {{get_label(sentiment_news.docSentiment.type)}}" ng-show="!is_loading4">{{keyword_news.keywords[0].text}}</span></p>
+				<span><b>Summary:</b></span>
+				<p>{{summ_news}}</p>
 			</div>
 		</div>
 	</div>
