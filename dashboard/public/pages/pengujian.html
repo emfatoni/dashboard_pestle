@@ -1,0 +1,81 @@
+<div class="row">
+	<h1 class="text-center">TESTING PAGE</h1>
+	<div class="col-md-12 well" style="margin-top: 30px">
+		<div class="col-md-4">
+			<p class="lead">Enter keywords:</p>
+			<input class="form-control" type="text" placeholder="keywords">
+			<br>
+			<button class="btn btn-primary">Crawl</button>
+		</div>
+		<div class="col-md-8">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th class="text-center">Judul</th>
+						<th class="text-center">URL</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Title</td>
+						<td><a href="">http://sampleurl.com/sample/just-sample</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="col-md-12 well" style="margin-top: 30px">
+		<div class="col-md-4">
+			<p class="lead">Enter URL:</p>
+			<input class="form-control" type="text" placeholder="URL">
+			<br>
+			<button class="btn btn-primary">Extract</button>
+		</div>
+		<div class="col-md-8">
+			<p>Main Text:</p>
+			<textarea class="form-control" rows="6"></textarea>
+			<br>
+			<div class="col-md-6" style="height: 250px" id="gpc-box">
+			</div>
+			<div class="col-md-6">
+				<p><b>Sentiment:</b> Positive</p>
+				<p><b>Keywords:</b> <span class="label label-danger">Nuclear War</span></p>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$('#gpc-box').highcharts({
+    		chart: {
+				type: 'column'
+			},
+			title: {
+				text: ''
+			},
+			xAxis: {
+				categories: ['Positive', 'Neutral', 'Negative']
+			},	
+			yAxis: {
+				title: {
+					text: 'Jumlah'
+				}
+			},
+			series: [{
+				name: 'Sentiment',
+				data: [0, 1, 4],
+				pointWidth: 20
+			}],
+			plotOptions: {
+				column: {
+					colorByPoint: true,
+					colors: [
+						'#27ae60',
+						'#3498db',
+						'#c0392b'
+					],
+				}
+			}
+		});
+	});
+</script>

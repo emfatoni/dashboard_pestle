@@ -24,6 +24,9 @@ app.config(function($routeProvider, $locationProvider){
 	$routeProvider.when('/economy', {
 		templateUrl: 'pages/economy.html',
 	});
+	$routeProvider.when('/testing', {
+		templateUrl: 'pages/pengujian.html',
+	});
 });
 
 /* SERVICES */
