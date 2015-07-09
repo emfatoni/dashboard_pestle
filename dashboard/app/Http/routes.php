@@ -22,11 +22,14 @@ Route::get('legal', 'DashboardController@legal');
 Route::get('environment', 'DashboardController@environment');
 Route::get('keyword', 'DashboardController@keyword');
 
+Route::get('dashboard/crawl', 'DashboardController@crawl');
+
 /* Resources */
 Route::resource('metric', 'MetricController');
 Route::resource('site', 'SiteController');
 Route::resource('condition', 'ConditionController');
 Route::resource('crawlered', 'CrawleredController');
+Route::resource('dashboard', 'DashboardController');
 
 /* Percobaan-percobaan */
 Route::get('test', 'DashboardController@test');

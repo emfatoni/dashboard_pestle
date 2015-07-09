@@ -26,10 +26,38 @@ app.config(function($routeProvider, $locationProvider){
 	});
 	$routeProvider.when('/testing', {
 		templateUrl: 'pages/pengujian.html',
+		controller: 'TestController'
 	});
 });
 
 /* SERVICES */
+app.factory("TestSvc", function($http){
+	return{
+		crawl: function(data)
+		{
+			return $http({method: 'GET', url:'dashboard/crawl', params:data});
+		}
+	}
+});
+app.controller('TestController', function($scope, $location, TestSvc){
+
+	$scope.query = "";
+	$scope.is_loading1 = false;
+	$scope.is_loading2 = false;
+
+	$scope.crawl = function(){
+		$scope.is_loading1 = true;
+		var obj = {"query": $scope.query};
+		var req = TestSvc.crawl(obj);
+		req.success(function(res){
+			$scope.is_loading1 = false;
+			$scope.urls = res;
+		});
+	}
+
+});
+
+
 app.factory("MetricSvc", function($http){
 	return{
 		all: function()

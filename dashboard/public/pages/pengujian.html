@@ -3,9 +3,10 @@
 	<div class="col-md-12 well" style="margin-top: 30px">
 		<div class="col-md-4">
 			<p class="lead">Enter keywords:</p>
-			<input class="form-control" type="text" placeholder="keywords">
+			<input class="form-control" type="text" placeholder="keywords" ng-model="query">
 			<br>
-			<button class="btn btn-primary">Crawl</button>
+			<button class="btn btn-primary" ng-click="crawl()">Crawl</button>
+			<p ng-show="is_loading1">Loading. . .</p>
 		</div>
 		<div class="col-md-8">
 			<table class="table table-bordered">
@@ -16,9 +17,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Title</td>
-						<td><a href="">http://sampleurl.com/sample/just-sample</a></td>
+					<tr ng-repeat="url in urls">
+						<td>{{url.title}}</td>
+						<td><a href="{{url.url}}">{{url.url}}</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -30,6 +31,7 @@
 			<input class="form-control" type="text" placeholder="URL">
 			<br>
 			<button class="btn btn-primary">Extract</button>
+			<p ng-show="is_loading2">Loading. . .</p>
 		</div>
 		<div class="col-md-8">
 			<p>Main Text:</p>

@@ -149,14 +149,36 @@ class DashboardController extends Controller {
 		echo "</code></pre>";
 	}
 
-	private function crawl($q)
+	public function crawl(Request $req)
 	{
+		$q = $req->input('query');
+
+		if(($q === null)||($q === '')){
+			return json_encode(array('status' => 'query empty'));
+		}
+
+		$q = str_replace(' ', '+', $q);
+
 		$key = 'AIzaSyCuXlh6HdSLy-hjxlnpOUv7uH58Mon7PTY';
 		$cx = '010284409504547172167:v_6u_hoi8rq';
 
-		$req = file_get_contents('https://www.googleapis.com/customsearch/v1?'.'key='.$key.'&cx='.$cx.'&q='.$q);
+		$qstring = 'https://www.googleapis.com/customsearch/v1?'.'key='.$key.'&cx='.$cx.'&q='.$q;
+		
+		/*$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $qstring);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$data = curl_exec($ch);
+		curl_close($ch);
 
-		$hsl = (array) json_decode($req);
+		$hsl = (array) json_decode($data);
+
+		return json_encode($data);
+
+		//$opt = array('key'=>)*/
+
+		$reqs = file_get_contents($qstring);
+
+		$hsl = (array) json_decode($reqs);
 
 		$out = array();
 		$sites = $hsl['items'];
@@ -169,7 +191,7 @@ class DashboardController extends Controller {
 			$out[] = $temp;
 		}
 
-		return $out;
+		return json_encode($out);
 	}
 
 
