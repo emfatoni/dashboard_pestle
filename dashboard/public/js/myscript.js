@@ -303,7 +303,7 @@ app.filter('pestle', function(){
 app.controller('MainController', function($scope, $location){
 	//
 });
-app.controller('HomeNewController', function($scope, $location, NewsSvc, $filter){
+app.controller('HomeNewController', function($scope, $location, NewsSvc, $filter, MetricSvc, TestSvc){
 	
 
 	$scope.get_sum_sentiment = function(metric, sentiment_val){
@@ -591,6 +591,156 @@ app.controller('HomeNewController', function($scope, $location, NewsSvc, $filter
 
         loading: false
     }
+
+    //
+    $scope.is_loading1 = false;
+	$scope.is_loading2 = false;
+	$scope.is_loading3 = false;
+	$scope.is_loading4 = false;
+    $scope.query = "";
+    $scope.news_now = {
+		"title": "",
+		"url": "",
+		"website": ""
+	};
+
+	$scope.news_temp = {
+		"title": "",
+		"url": "",
+		"website": "",
+		"summary": "",
+		"sentiment": "",
+		"keyword": "",
+		"id_metric": ""
+	}
+	$scope.url_news = "";
+	$scope.content_news = "";
+	$scope.keyword_news = "";
+	$scope.sentiment_news = "";
+
+	$scope.get_url_news = function(url_find){
+		$scope.news_now = $filter('filter')($scope.urls, {url:url_find})[0];
+		console.log($scope.news_now);
+	}
+
+	
+
+	
+
+	
+
+	
+
+
+
+	$scope.save_news = function(){
+		$scope.news_temp.title = $scope.news_now.title;
+		$scope.news_temp.url = $scope.news_now.url;
+		$scope.news_temp.website = $scope.news_now.website;
+		$scope.news_temp.summary = $scope.summ_news;
+		$scope.news_temp.keyword = $scope.keyword_news.keywords[0].text;
+		$scope.news_temp.sentiment = $scope.sentiment_news.docSentiment.type;
+
+		$scope.is_loading2 = true;
+		var req = NewsSvc.create($scope.news_temp);
+
+		req.success(function(res){
+			$scope.is_loading2 = false;
+			alert(res.status);
+		});
+
+	}
+
+	$scope.get_summ = function(){
+		$scope.summ_news = $scope.content_news.text.split('\n')[0];
+
+		$scope.save_news();
+	}
+
+	$scope.keyword = function(){
+		$scope.is_loading4 = true;
+		var obj = {"title": $scope.news_now.title};
+		var req = TestSvc.keyword(obj);
+		req.success(function(res){
+			$scope.is_loading4 = false;
+			$scope.keyword_news = res;
+			console.log($scope.keyword_news);
+
+			$scope.get_summ();
+		});
+	}
+
+	$scope.sentiment = function(){
+		$scope.is_loading3 = true;
+		var obj = {"text": $scope.content_news.text};
+		var req = TestSvc.sentiment(obj);
+		req.success(function(res){
+			$scope.is_loading3 = false;
+			$scope.sentiment_news = res;
+
+			console.log($scope.sentiment_news);
+
+			$scope.keyword();
+		});
+	}
+
+	$scope.content = function(){
+		$scope.is_loading2 = true;
+		var obj = {"url": $scope.news_now.url};
+		var req = TestSvc.content(obj);
+		req.success(function(res){
+			$scope.is_loading2 = false;
+			$scope.content_news = res;
+
+			console.log($scope.content_news);
+
+			$scope.sentiment();
+		});
+	}
+
+	$scope.crawl = function(){
+		$scope.is_loading1 = true;
+		var obj = {"query": $scope.query};
+		var req = TestSvc.crawl(obj);
+		req.success(function(res){
+			$scope.is_loading1 = false;
+			$scope.urls = res;
+			
+			console.log($scope.urls[0]);
+
+			$scope.news_now = $scope.urls[0];
+			$scope.content();
+		});
+	}
+
+	$scope.get_metrics = function(){
+		var req = MetricSvc.all();
+		req.success(function(res){
+			$scope.metrics = res;
+		});
+	}
+	$scope.get_metrics();
+
+	$scope.pestlep = function(){
+		// get query
+		angular.forEach($scope.metrics, function(item){
+			if((item.name != 'area')&&(item.name != 'sector')){
+				$scope.news_temp.id_metric = item.id;
+
+				var key = item.keywords;
+				var keys = key.split(',');
+				console.log(keys[0]);
+
+				var que = keys[2]+" china";
+
+				// crawl
+				$scope.query = que;
+				$scope.crawl();
+
+				// console.log($scope.urls);
+			}
+		});
+	}
 
 });
 app.controller('DetailController', function($scope, $location, NewsSvc, $filter){
