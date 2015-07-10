@@ -1,5 +1,5 @@
 <div class="row">
-	<h1 class="text-center">TESTING PAGE</h1>
+	<h1 class="text-center">BEHIND THE SCENE</h1>
 	<div class="col-md-12 well" style="margin-top: 30px">
 		<div class="col-md-4">
 			<p class="lead">Enter keywords:</p>
@@ -35,6 +35,19 @@
 			<button class="btn btn-warning" ng-click="keyword()">Keyword</button>
 			<button class="btn" ng-click="get_summ()">Summary</button>
 			<p ng-show="is_loading2">Loading. . .</p>
+			<br>
+			<p>
+				<select class="form-control" ng-model="news_temp.id_metric">
+					<option value="1">Politic</option>
+					<option value="3">Economy</option>
+					<option value="2">Social</option>
+					<option value="4">Technology</option>
+					<option value="5">Legal</option>
+					<option value="6">Environment</option>
+				</select>
+				<br>
+				<button class="btn btn-success" ng-click="save_news()">Save</button>
+			</p>
 		</div>
 		<div class="col-md-8">
 			<p>Main Text:</p>
@@ -53,7 +66,7 @@
 </div>
 <script type="text/javascript">
 	$(function(){
-		/* $('#gpc-box').highcharts({
+		$('#gpc-box').highcharts({
     		chart: {
 				type: 'column'
 			},
@@ -83,6 +96,6 @@
 					],
 				}
 			}
-		}); */
+		});
 	});
 </script>

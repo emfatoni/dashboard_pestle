@@ -1,4 +1,4 @@
-
+		{{met = 6}}
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-12">
@@ -10,104 +10,21 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="col-md-12 well">
-					<div id="environment-gpc" style="height: 250px"></div>
+					<highchart config="chart_pol" style="height: 250px"></highchart>
 					<div style="margin-top: 15px">
-						<span class="label label-primary">environmental crisis</span>
-						<span class="label label-success">off the grid in china</span>
-						<span class="label label-danger">environmental concern</span>
-						<span class="label label-danger">china's environment</span>
-						<span class="label label-success">environmentally friendly consumers</span>
+						<span ng-repeat="berita in get_per_factor(met)"><span class="label {{get_label(berita.sentiment)}}">{{berita.keyword}}</span></span>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-4 condition-container">
-				<div class="col-md-12 fd-box-turquoise fd-txt-white condition-box">
-					<p><i class="glyphicon glyphicon-plus-sign"></i> <a href="http://sinosphere.blogs.nytimes.com/2015/06/15/living-largely-off-the-grid-in-china/" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
-					<p class="lead" style="margin-bottom: 5px">Living Largely Off the Grid in China - The New York Times</p>
+			<div class="col-md-4 condition-container" ng-repeat="berita in get_per_factor(met)">
+				<div class="col-md-12 {{get_box_color(berita.sentiment)}} fd-txt-white condition-box">
+					<p><i class="glyphicon {{get_sign(berita.sentiment)}}"></i> <a href="{{berita.url}}" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
+					<p class="lead" style="margin-bottom: 5px">{{berita.title}}</p>
 
-					<p>2015-06-15 | sinosphere.blogs.nytimes.com/</p>
+					<p>2015-06-15 | {{berita.website}}</p>
 
-					<p>In a modest-looking dwelling shrouded by greenery halfway up one of the highest mountains in eastern China, a young couple have been conducting an experiment in self-sufficiency for about five years. On Lao Mountain, in coastal Shandong Province, Tang Guanhua, 26, whose family runs a design company, and his wife, Xing Zhen, 31, a former securities manager, have been surviving by their own wiles, producing everything from shoes to electricity.</p>
+					<p>{{berita.summary}}</p>
 				</div>
 			</div>
-
-			<div class="col-md-4 condition-container">
-				<div class="col-md-12 fd-box-pomegranate fd-txt-white condition-box">
-					<p><i class="glyphicon glyphicon-minus-sign"></i> <a href="http://thediplomat.com/2015/03/why-china-cant-fix-its-environment/" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
-					<p class="lead" style="margin-bottom: 5px">Why China Can’t Fix Its Environment</p>
-
-					<p>2015-06-15 | thediplomat.com</p>
-
-					<p>In early March, a debate over China’s action (or inaction) on the environment gripped both Chinese and international media. While air pollution and other environmental degradation have long been widely acknowledged, it was not until Chai Jing, one of China’s best known journalists, unveiled her self-financed 104-minute documentary Under The Dome, which features China’s catastrophic air pollution, that the government’s position on the environment became a nationwide, policy-oriented debate among intellectuals, policymakers, bureaucrats, and the Chinese public.</p>
-				</div>
-			</div>
-
-			<div class="col-md-4 condition-container">
-				<div class="col-md-12 fd-box-peter-river fd-txt-white condition-box">
-					<p><i class="glyphicon glyphicon-record"></i> <a href="http://www.cfr.org/china/chinas-environmental-crisis/p12608" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
-					<p class="lead" style="margin-bottom: 5px">China's Environmental Crisis</p>
-
-					<p>2015-06-15 | rfg.org</p>
-
-					<p>China's environmental crisis is one of the most pressing challenges to emerge from the country's rapid industrialization. Its economic rise, which has averaged around 10 percent annual GDP growth for the past decade, has come at the expense of its environment and public health. As the world's largest source of carbon emissions, China is responsible for a third of the planet's greenhouse gas output and has sixteen of the world's twenty most polluted cities.</p>
-				</div>
-			</div>
-
-			<div class="col-md-4 condition-container">
-				<div class="col-md-12 fd-box-pomegranate fd-txt-white condition-box">
-					<p><i class="glyphicon glyphicon-minus-sign"></i> <a href="http://www.livescience.com/27862-china-environmental-problems.html" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
-					<p class="lead" style="margin-bottom: 5px">China's Top 6 Environmental Concerns</p>
-
-					<p>2015-06-15 | livescience.com</p>
-
-					<p>China's environmental crises seem to arise on a scale as sweeping and epic as the vast nation itself: Thousands of dead, bloated pigs floating down the river that supplies Shanghai with its drinking water. Air pollution in Beijing so impenetrable the U.S. Embassy's air quality measuring station can only call it "beyond index." Industrial towns where rates of cancer are so high they're known as "cancer villages."</p>
-				</div>
-			</div>
-
-			<div class="col-md-4 condition-container">
-				<div class="col-md-12 fd-box-turquoise fd-txt-white condition-box">
-					<p><i class="glyphicon glyphicon-plus-sign"></i> <a href="http://www.chinabusinessreview.com/environmentally-friendly-consumers-emerge/"><i class="glyphicon glyphicon-new-window"></i></a></p>
-					<p class="lead" style="margin-bottom: 5px">Environmentally Friendly Consumers Emerge</p>
-
-					<p>2015-06-15 | chinabusinessreview.com</p>
-
-					<p>PRC government policies and consumer preferences are going green, presenting new opportunities for US companies to sell sustainable products in China.</p>
-				</div>
-			</div>
-			
 		</div>
-
-<script type="text/javascript">
-	$('#environment-gpc').highcharts({
-    		chart: {
-				type: 'column'
-			},
-			title: {
-				text: ''
-			},
-			xAxis: {
-				categories: ['Positive', 'Neutral', 'Negative']
-			},	
-			yAxis: {
-				title: {
-					text: 'Jumlah'
-				}
-			},
-			series: [{
-				name: 'Sentiment',
-				data: [2, 1, 2],
-				pointWidth: 20
-			}],
-			plotOptions: {
-				column: {
-					colorByPoint: true,
-					colors: [
-						'#27ae60',
-						'#3498db',
-						'#c0392b'
-					],
-				}
-			}
-		});
-</script>

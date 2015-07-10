@@ -1,6 +1,4 @@
-@extends('daspestle/template')
-
-@section('isi')
+		{{met = 2}}
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-12">
@@ -10,46 +8,23 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-6">
-				<div class="col-md-12">
-					<h3>News and Articles</h3>
-
-					<div class="well col-md-12">
-						<p class="lead">WorldBank.org</p>
-						<p>Monday, 25-5-2015</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-						<p class="lead" style="margin: 5px 0px">
-							<a href="#" title="sentiment"><i class="glyphicon glyphicon-minus-sign"></i></a>
-							<a href="#" title="go to website"><i class="glyphicon glyphicon-globe"></i></a>
-						</p>
-					</div>
-					<div class="well col-md-12">
-						<p class="lead">NationNews.org</p>
-						<p>Monday, 25-5-2015</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-						<p class="lead" style="margin: 5px 0px">
-							<a href="#" title="sentiment"><i class="glyphicon glyphicon-plus-sign"></i></a>
-							<a href="#" title="go to website"><i class="glyphicon glyphicon-globe"></i></a>
-						</p>
-					</div>
-					<div class="well col-md-12">
-						<p class="lead">TheHuffingtonPost.org</p>
-						<p>Monday, 25-5-2015</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.
-						</p>
-						<p class="lead" style="margin: 5px 0px">
-							<a href="#" title="sentiment"><i class="glyphicon glyphicon-minus-sign"></i></a>
-							<a href="#" title="go to website"><i class="glyphicon glyphicon-globe"></i></a>
-						</p>
+			<div class="col-md-4">
+				<div class="col-md-12 well">
+					<highchart config="chart_pol" style="height: 250px"></highchart>
+					<div style="margin-top: 15px">
+						<span ng-repeat="berita in get_per_factor(met)"><span class="label {{get_label(berita.sentiment)}}">{{berita.keyword}}</span></span>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
+
+			<div class="col-md-4 condition-container" ng-repeat="berita in get_per_factor(met)">
+				<div class="col-md-12 {{get_box_color(berita.sentiment)}} fd-txt-white condition-box">
+					<p><i class="glyphicon {{get_sign(berita.sentiment)}}"></i> <a href="{{berita.url}}" class="pull-right"><i class="glyphicon glyphicon-new-window"></i></a></p>
+					<p class="lead" style="margin-bottom: 5px">{{berita.title}}</p>
+
+					<p>2015-06-15 | {{berita.website}}</p>
+
+					<p>{{berita.summary}}</p>
+				</div>
 			</div>
 		</div>
-@endsection

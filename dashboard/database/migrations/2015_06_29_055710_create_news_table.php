@@ -15,6 +15,17 @@ class CreateNewsTable extends Migration {
 		Schema::create('news', function(Blueprint $table)
 		{
 			$table->increments('id');
+
+			$table->string('title');
+			$table->text('url');
+			$table->string('website');
+			$table->text('summary');
+			$table->string('sentiment');
+			$table->string('keyword');
+
+			$table->integer('id_metric')->unsigned();
+			$table->foreign('id_metric')->references('id')->on('metrics');
+
 			$table->timestamps();
 		});
 	}

@@ -15,6 +15,7 @@
 
 	<script src="js/angular.js"></script>
 	<script src="js/angular-route.js"></script>
+	<script src="js/highcharts-ng.js"></script>
 	<script src="js/ui-bootstrap.js"></script>
 	<script src="js/myscript.js"></script>
 </head>

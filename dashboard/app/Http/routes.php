@@ -28,6 +28,7 @@ Route::get('dashboard/keyword', 'DashboardController@keyword_ext');
 Route::get('dashboard/sentiment', 'DashboardController@sentiment_anl');
 
 /* Resources */
+Route::resource('news', 'NewsController');
 Route::resource('metric', 'MetricController');
 Route::resource('site', 'SiteController');
 Route::resource('condition', 'ConditionController');
